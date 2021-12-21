@@ -1,6 +1,4 @@
-const sauce = require('../models/Sauce');
-const Sauce = require('../models/Sauce')
-
+const Sauce = require('../models/Sauce');
 
 exports.sauceCreation = ((req, res, next) => {
     const sauce = new Sauce({

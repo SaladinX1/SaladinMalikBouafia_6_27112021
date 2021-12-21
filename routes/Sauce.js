@@ -9,7 +9,7 @@ router.get('/api/Sauces', auth, sauceCtrl.saucesFind);
 
 router.delete('/api/Sauces/:id', auth, sauceCtrl.sauceDelete);
 
-//router.post('api/sauces/:id/like', auth, sauceCtrl.likeAndUnlike);
+router.post('/api/sauces/:id/like', auth, sauceCtrl.likeAndUnlike);
 
 
 
