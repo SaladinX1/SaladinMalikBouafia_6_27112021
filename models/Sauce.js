@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const sauce = mongoose.Schema({
 
     userId: {
-        String,
+        type: String,
+        required: true
     },
     name: {
         type: String,
@@ -44,7 +45,7 @@ const sauce = mongoose.Schema({
     usersDisliked: {
         type: String,
         required: true
-    }
+    },
 
 
 });
