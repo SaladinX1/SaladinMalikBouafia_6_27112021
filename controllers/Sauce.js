@@ -23,6 +23,17 @@ exports.sauceCreation = (req, res) => {
     // }))
 };
 
+
+exports.uniqueSauce = (req, res, next) => {
+    Sauce.findOne({
+            _id: req.params.id
+        })
+        .then(sauce => res.status(200).json(sauce))
+        .catch(error => res.status(404).json({
+            error
+        }));
+}
+
 exports.saucesFind = (req, res) => {
 
     Sauce.find()
@@ -39,7 +50,7 @@ exports.sauceUpdate = (req, res) => {
     } : {
         ...ObjSauce
     };
-    Thing.updateOne({
+    Sauce.updateOne({
             _id: req.params.id
         }, {
             ...ObjSauce,
@@ -78,7 +89,7 @@ exports.sauceDelete = (req, res, next) => {
 };
 
 
-// exports.likeAndUnlike = (req, res, next) => {
+// exports.likeDislike = (req, res, next) => {
 
 //     let like = req.body.like
 //     let userId = req.body.userId
