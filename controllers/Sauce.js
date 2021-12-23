@@ -6,14 +6,16 @@ const fs = require('fs');
 exports.sauceCreation = (req, res) => {
     const ObjSauce = JSON.parse(req.body.sauce);
     delete ObjSauce._id;
+    console.log("message ObjSauce: ", req.body);
     const sauceItem = new Sauce({
         ...ObjSauce,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.body.image}`,
         like: 0,
         dislike: 0,
-        usersLiked: [' '],
-        usersDisliked: [' ']
+        usersLiked: [],
+        usersDisliked: []
     });
+    console.log("Message Sauce:", sauceItem);
     sauceItem.save()
         .then(res.status(201).json({
             message: 'Sauce crée !'
@@ -24,29 +26,38 @@ exports.sauceCreation = (req, res) => {
 };
 
 
+
+
+
 exports.uniqueSauce = (req, res, next) => {
     Sauce.findOne({
             _id: req.params.id
         })
         .then(sauce => res.status(200).json(sauce))
-        .catch(error => res.status(404).json({
-            error
-        }));
+    // .catch(error => res.status(404).json({
+    //     message: `Les sauce n'ont pas pu être trouvées !`
+    // }));
 }
+
+
+
+
 
 exports.saucesFind = (req, res) => {
 
     Sauce.find()
         .then(products => res.status(200).json(products))
-        .catch(error => res.status(400).json({
-            message: `Votre sauce n'a pas pu être trouvée !`
-        }))
+    // .catch(error => res.status(400).json({
+    //     message: `Votre sauce n'a pas pu être trouvée !`
+    // }))
 };
+
+
 
 exports.sauceUpdate = (req, res) => {
     const ObjSauce = req.file ? {
         ...JSON.parse(ObjSauce),
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.body.image}`
     } : {
         ...ObjSauce
     };
@@ -59,10 +70,12 @@ exports.sauceUpdate = (req, res) => {
         .then(() => res.status(200).json({
             message: 'Objet modifié !'
         }))
-        .catch(error => res.status(400).json({
-            message: 'Muvaise requête !'
-        }));
+    // .catch(error => res.status(400).json({
+    //     message: 'Muvaise requête !'
+    // }));
 };
+
+
 
 
 exports.sauceDelete = (req, res, next) => {
@@ -78,15 +91,17 @@ exports.sauceDelete = (req, res, next) => {
                     .then(() => res.status(200).json({
                         message: 'Objet supprimé !'
                     }))
-                    .catch(error => res.status(400).json({
-                        message: 'Requête mauvaise!'
-                    }));
+                // .catch(error => res.status(400).json({
+                //     message: 'Requête mauvaise!'
+                // }));
             });
         })
         .catch(error => res.status(500).json({
             message: 'Erreur serveur !'
         }));
 };
+
+
 
 
 // exports.likeDislike = (req, res, next) => {
