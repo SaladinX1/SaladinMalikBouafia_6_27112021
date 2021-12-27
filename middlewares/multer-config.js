@@ -16,7 +16,7 @@ const saveFileImage = multer.diskStorage({
         callback(null, nom + Date.now() + '.' + extension)
 
     }
-})
+});
 
 module.exports = multer({
     saveFileImage
