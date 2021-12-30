@@ -4,12 +4,12 @@ const auth = require('../middlewares/auth');
 const sauceCtrl = require('../controllers/Sauce');
 const router = express.Router();
 
-router.post('/', multer, sauceCtrl.sauceCreation);
-router.get('/', sauceCtrl.saucesFind);
-router.get('/:id', sauceCtrl.uniqueSauce);
-router.put('/:id', multer, sauceCtrl.sauceUpdate);
-router.delete('/:id', sauceCtrl.sauceDelete);
-router.post('/:id/like', sauceCtrl.likeDislike);
+router.post('/', auth, multer, sauceCtrl.sauceCreation);
+router.get('/', auth, sauceCtrl.saucesFind);
+router.get('/:id', auth, sauceCtrl.uniqueSauce);
+router.put('/:id', auth, multer, sauceCtrl.sauceUpdate);
+router.delete('/:id', auth, sauceCtrl.sauceDelete);
+router.post('/:id/like', auth, sauceCtrl.likeDislike);
 
 
 
