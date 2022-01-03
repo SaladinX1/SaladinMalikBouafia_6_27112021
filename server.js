@@ -32,6 +32,3 @@ mongoose.connect("mongodb+srv://UserProjet6:UserProjet6@clusterprojet6.6x8f4.mon
   })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
-
-
-//app.use(mongoose);

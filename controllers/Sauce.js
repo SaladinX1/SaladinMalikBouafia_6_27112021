@@ -18,9 +18,6 @@ exports.sauceCreation = (req, res) => {
         .then(res.status(201).json({
             message: 'Sauce crée !'
         }))
-    // .catch(res.status(400).json({
-    //     message: 'Erreur ! Mauvaise requête !'
-    // }))
 };
 
 
@@ -32,9 +29,6 @@ exports.uniqueSauce = (req, res, next) => {
             _id: req.params.id
         })
         .then(sauce => res.status(200).json(sauce))
-    // .catch(error => res.status(404).json({
-    //     message: `La sauce n'a pas pu être trouvée !`
-    // }));
 }
 
 
@@ -45,9 +39,6 @@ exports.saucesFind = (req, res) => {
 
     Sauce.find()
         .then(products => res.status(200).json(products))
-    // .catch(error => res.status(400).json({
-    //     message: `Votre sauce n'a pas pu être trouvée !`
-    // }))
 };
 
 
@@ -89,9 +80,6 @@ exports.sauceDelete = (req, res, next) => {
                     .then(() => res.status(200).json({
                         message: 'Objet supprimé !'
                     }))
-                // .catch(error => res.status(400).json({
-                //     message: 'Requête mauvaise!'
-                // }));
             });
         })
         .catch(error => res.status(500).json({
